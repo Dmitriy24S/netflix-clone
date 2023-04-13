@@ -25,6 +25,7 @@ const Auth = () => {
         })
       } catch (error) {
         console.log('register error', error)
+        alert(`form register error: ${error}`)
       }
     },
     [email, name, password]
