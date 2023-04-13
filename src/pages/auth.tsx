@@ -4,6 +4,8 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 // import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
+import { FaGithub } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 
 const Auth = () => {
   // const router = useRouter()
@@ -99,11 +101,27 @@ const Auth = () => {
               />
               <button
                 type='submit'
-                className='mt-6 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700 '
+                className='mt-6 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700 focus-visible:bg-red-700 '
               >
                 {pageMode === 'login' ? 'Login' : 'Sign up'}
               </button>
             </form>
+            <div className='mt-8 flex items-center justify-center space-x-6'>
+              <button
+                aria-label='github account login'
+                onClick={() => signIn('github', { callbackUrl: '/' })}
+                className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition ease-out hover:opacity-90 focus-visible:opacity-90'
+              >
+                <FaGithub size={30} />
+              </button>
+              <button
+                aria-label='google account login'
+                onClick={() => signIn('google', { callbackUrl: '/' })}
+                className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition ease-out hover:opacity-90 focus-visible:opacity-90'
+              >
+                <FcGoogle size={30} />
+              </button>
+            </div>
             <p className='mt-10 text-neutral-400'>
               {pageMode === 'login'
                 ? 'First time using Netflix? '
