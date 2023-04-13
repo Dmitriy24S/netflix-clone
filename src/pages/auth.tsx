@@ -1,17 +1,34 @@
 import Input from '@/components/Input'
+import axios from 'axios'
 import Image from 'next/image'
-import React, { useCallback, useState } from 'react'
+import React, { FormEvent, useCallback, useState } from 'react'
 
 const Auth = () => {
   const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
+  const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [pageMode, setPageMode] = useState<'login' | 'register'>('login')
 
-  //   const togglePageMode = () => {
   const togglePageMode = useCallback(() => {
     setPageMode((currentMode) => (currentMode === 'login' ? 'register' : 'login'))
   }, [])
+
+  const register = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault()
+
+      try {
+        await axios.post('/api/register', {
+          email,
+          name,
+          password,
+        })
+      } catch (error) {
+        console.log('register error', error)
+      }
+    },
+    [email, name, password]
+  )
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-no-repeat">
@@ -22,7 +39,7 @@ const Auth = () => {
         </nav>
         <div className='flex justify-center'>
           <div className='mt-2 rounded-md bg-black/70 p-6 sm:p-16 lg:w-2/5 lg:max-w-md'>
-            <form>
+            <form onSubmit={register}>
               <h2 className='mb-8 text-4xl font-semibold'>
                 {pageMode === 'login' ? 'Sign in' : 'Create an account'}
               </h2>
@@ -30,9 +47,10 @@ const Auth = () => {
                 <Input
                   type='text'
                   label='Username'
-                  value={username}
+                  value={name}
+                  required
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setUsername(e.target.value)
+                    setName(e.target.value)
                   }
                 />
               )}
@@ -40,6 +58,7 @@ const Auth = () => {
                 type='email'
                 label='Email'
                 value={email}
+                required
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setEmail(e.target.value)
                 }
@@ -48,6 +67,7 @@ const Auth = () => {
                 type='password'
                 label='Password'
                 value={password}
+                required
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPassword(e.target.value)
                 }

@@ -9,10 +9,17 @@ interface InputProps
   type: string
   onChange: any
   value: string
+  required?: boolean
 }
 
 // const Input = ({ label, type = 'text' }: InputProps) => {
-const Input: React.FC<InputProps> = ({ label, type = 'text', value, onChange }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  type = 'text',
+  value,
+  onChange,
+  required = false,
+}) => {
   return (
     <div className='relative mb-4'>
       <input
@@ -22,6 +29,7 @@ const Input: React.FC<InputProps> = ({ label, type = 'text', value, onChange }) 
         placeholder=' '
         value={value}
         onChange={onChange}
+        required={required}
         className='text-md peer block w-full rounded-md bg-neutral-700 px-6 pb-1 pt-6 text-white'
       />
       <label
