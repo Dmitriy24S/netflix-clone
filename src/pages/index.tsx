@@ -1,3 +1,4 @@
+import Billboard from '@/components/Billboard'
 import Navbar from '@/components/Navbar'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { NextPageContext } from 'next'
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className='pt-20'>
+        <Billboard />
         <p>Logged in as: {user?.name} </p>
         <button
           type='button'
