@@ -8,7 +8,7 @@ import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 
 const Auth = () => {
-  // const router = useRouter()
+  //   const router = useRouter()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -20,19 +20,29 @@ const Auth = () => {
 
   const login = useCallback(async () => {
     try {
-      await signIn('credentials', {
+      const loginResponse = await signIn('credentials', {
         email,
         password,
         redirect: false,
         callbackUrl: '/',
       })
+      //  router.push('/')
 
-      // router.push('/')
+      //  console.log('loginResponse', loginResponse)
+      //  {
+      //     "error": "Email does not exist.",
+      //     "status": 401,
+      //     "ok": false,
+      //     "url": null
+      // }
+      if (loginResponse?.error) {
+        throw new Error(loginResponse.error)
+      }
     } catch (error) {
       console.log('login error', error)
       alert(`form login error: ${error}`)
     }
-    // }, [email, password, router])
+    //   }, [email, password, router])
   }, [email, password])
 
   const register = useCallback(async () => {
