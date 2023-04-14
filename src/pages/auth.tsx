@@ -24,7 +24,8 @@ const Auth = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: '/',
+        // callbackUrl: '/',
+        callbackUrl: '/profiles',
       })
       //  router.push('/')
 
@@ -119,14 +120,15 @@ const Auth = () => {
             <div className='mt-8 flex items-center justify-center space-x-6'>
               <button
                 aria-label='github account login'
-                onClick={() => signIn('github', { callbackUrl: '/' })}
+                // onClick={() => signIn('github', { callbackUrl: '/' })}
+                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
                 className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition ease-out hover:opacity-90 focus-visible:opacity-90'
               >
                 <FaGithub size={30} />
               </button>
               <button
                 aria-label='google account login'
-                onClick={() => signIn('google', { callbackUrl: '/' })}
+                onClick={() => signIn('google', { callbackUrl: '/profiles' })}
                 className='flex h-10 w-10 items-center justify-center rounded-full bg-white transition ease-out hover:opacity-90 focus-visible:opacity-90'
               >
                 <FcGoogle size={30} />
