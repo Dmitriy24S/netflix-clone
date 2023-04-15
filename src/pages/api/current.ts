@@ -9,6 +9,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { currentUser } = await serverAuth(req, res)
 
+    // ! redundant? - serverAuth throws error if no user?
+    // if (!currentUser) {
+    //   return res.status(401).end()
+    // }
+
     return res.status(200).json(currentUser)
   } catch (error) {
     console.log('current handler error', error)
