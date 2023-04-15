@@ -1,6 +1,7 @@
+import useSWR from 'swr'
+
 import fetcher from '@/helpers/fetcher'
 import { Movie } from '@prisma/client'
-import useSWR from 'swr'
 
 const useBillboard = () => {
   const { data, error, isLoading } = useSWR<Movie>('/api/random', fetcher, {

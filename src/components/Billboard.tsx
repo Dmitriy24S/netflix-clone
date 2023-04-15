@@ -1,6 +1,7 @@
 import React from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
-import useBillboard from '../../hooks/useBillboard'
+
+import useBillboard from '../hooks/useBillboard'
 
 const Billboard = () => {
   const { data } = useBillboard()
