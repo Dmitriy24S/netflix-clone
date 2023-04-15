@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 
+import useInfoModal from '@/hooks/useInfoModal'
 import useBillboard from '../hooks/useBillboard'
 import PlayButton from './PlayButton'
 
 const Billboard = () => {
   const { data } = useBillboard() // Movie | undefined
+  const { openModal } = useInfoModal()
+
+  const handleOpenModal = useCallback(() => {
+    // ! Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+    if (data) {
+      openModal(data.id)
+    }
+  }, [openModal, data])
+  // }, [openModal, data?.id])
+  // }, [openModal, data.id])
+  // ! 'data' is possibly 'undefined'.ts(18048)
 
   return (
     <div className='relative h-[56.25vw]'>
@@ -31,6 +43,7 @@ const Billboard = () => {
               {/* // ! Type 'string | undefined' is not assignable to type 'string'. temp fix?: add conditional render */}
               <button
                 type='button'
+                onClick={handleOpenModal}
                 className='flex w-auto items-center rounded-md bg-white bg-opacity-30 px-2 py-1 text-xs font-semibold text-white transition hover:bg-opacity-20 md:px-4 md:py-2 lg:text-lg'
               >
                 <AiOutlineInfoCircle className='mr-1' />

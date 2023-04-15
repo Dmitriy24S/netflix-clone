@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { BiChevronDown } from 'react-icons/bi'
 
+import useInfoModal from '@/hooks/useInfoModal'
 import { Movie } from '@prisma/client'
 import FavoriteButton from './FavoriteButton'
 import PlayButton from './PlayButton'
@@ -12,6 +14,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const [isFocused, setIsFocused] = useState(false)
+  const { openModal } = useInfoModal()
 
   const handleParentFocus = () => {
     setIsFocused(true)
@@ -73,6 +76,17 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           <div className='flex items-center gap-3'>
             <PlayButton movieId={data.id} movieName={data.title} />
             <FavoriteButton movieId={data.id} />
+
+            <button
+              aria-label='More information'
+              type='button'
+              // onClick={handleOpenModal}
+              onClick={() => openModal(data.id)}
+              className='group/item ml-auto flex h-6 w-6 items-center justify-center rounded-full border-2 border-white transition hover:border-neutral-300 lg:h-10 lg:w-10'
+            >
+              {/* <BsArrowsAngleExpand /> */}
+              <BiChevronDown size={20} className='group-hover/item:text-neutral-300' />
+            </button>
           </div>
           <p className='mt-4 font-semibold text-green-400'>
             New <span className='text-white'>2023</span>
