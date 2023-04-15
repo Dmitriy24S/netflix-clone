@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { BsPlayFill } from 'react-icons/bs'
 
 import { Movie } from '@prisma/client'
 import FavoriteButton from './FavoriteButton'
+import PlayButton from './PlayButton'
 
 interface MovieCardProps {
   // data: Record<string, any>
@@ -71,14 +71,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         w-full rounded-b-md bg-zinc-800 p-2 shadow-md transition lg:p-4'
         >
           <div className='flex items-center gap-3'>
-            <button
-              aria-label={`Play trailer for ${data.title}`}
-              className='flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-white text-gray-950 transition hover:bg-neutral-300 lg:h-10 lg:w-10'
-              onClick={() => {}}
-              // onBlur={handleChildBlur}
-            >
-              <BsPlayFill size={20} />
-            </button>
+            <PlayButton movieId={data.id} movieName={data.title} />
             <FavoriteButton movieId={data.id} />
           </div>
           <p className='mt-4 font-semibold text-green-400'>
