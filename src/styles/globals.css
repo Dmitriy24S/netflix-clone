@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zinc-900 h-full overflow-x-hidden text-zinc-100;
+  @apply h-full overflow-x-hidden bg-zinc-900 text-zinc-100;
 }
 
 #__next {
@@ -12,6 +12,7 @@ body {
 
 html {
   @apply h-full;
+  color-scheme: dark;
 }
 
 /*
