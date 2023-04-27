@@ -1,9 +1,11 @@
 import Input from '@/components/Input'
+import TestAccountInfo from '@/components/TestAccountInfo'
 import axios from 'axios'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 
@@ -13,6 +15,11 @@ const Auth = () => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [pageMode, setPageMode] = useState<'login' | 'register'>('login')
+  const [showTestAccountInfo, setShowTestAccountInfo] = useState(true)
+
+  const toggleShowAccountInfo = () => {
+    setShowTestAccountInfo((prev) => !prev)
+  }
 
   const togglePageMode = useCallback(() => {
     setPageMode((currentMode) => (currentMode === 'login' ? 'register' : 'login'))
@@ -68,7 +75,7 @@ const Auth = () => {
           {/* <img src='images/logo.png' alt='netflix' className='h-12' /> */}
           <Image src='/images/logo.png' alt='netflix' height={48} width={177} priority />
         </nav>
-        <div className='flex justify-center'>
+        <div className=' flex justify-center'>
           <div className='relative mb-16 mt-20 rounded-md bg-black/70 p-6 sm:p-16 lg:max-w-md'>
             <form
               onSubmit={(e) => {
@@ -76,9 +83,23 @@ const Auth = () => {
                 pageMode === 'register' ? register() : login()
               }}
             >
-              <h2 className='mb-8 text-4xl font-semibold'>
-                {pageMode === 'login' ? 'Sign in' : 'Create an account'}
-              </h2>
+              <div className='relative flex items-start justify-between'>
+                <h2 className='mb-8 text-4xl font-semibold'>
+                  {pageMode === 'login' ? 'Sign in' : 'Create an account'}
+                </h2>
+                <button
+                  type='button'
+                  aria-label='Test account info'
+                  title='Test account info'
+                  // onMouseEnter={() => setShowTestAccountInfo(true)}
+                  // onMouseLeave={() => setShowTestAccountInfo(false)}
+                  // onClick={() => setShowTestAccountInfo((prev) => !prev)}
+                  onClick={toggleShowAccountInfo}
+                >
+                  <AiOutlineInfoCircle size={30} />
+                </button>
+                {showTestAccountInfo && <TestAccountInfo />}
+              </div>
               {pageMode === 'register' && (
                 <Input
                   type='text'
