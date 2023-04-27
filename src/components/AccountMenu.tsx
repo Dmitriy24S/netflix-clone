@@ -29,7 +29,9 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ isVisible }) => {
           <p className='text-sm group-hover/item:underline'>{data?.name}</p>
         </div>
         <hr className='my-4 h-px border-0 bg-gray-600' />
-        <button className='mx-4 h-full rounded-md bg-red-600 p-3 text-center text-sm hover:bg-red-700 hover:underline'>
+        <button
+        onClick={() => signOut()}
+        className='mx-4 h-full rounded-md bg-red-600 p-3 text-center text-sm hover:bg-red-700 hover:underline'>
           Sign out
         </button>
       </div>
