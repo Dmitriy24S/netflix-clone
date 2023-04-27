@@ -2,13 +2,13 @@ import Input from '@/components/Input'
 import axios from 'axios'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 
 const Auth = () => {
-  //   const router = useRouter()
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -24,12 +24,12 @@ const Auth = () => {
         email,
         password,
         redirect: false,
+        // redirect: true, // ! redirect to error page with error url
         // callbackUrl: '/',
-        callbackUrl: '/profiles',
+        // callbackUrl: '/profiles',
       })
-      //  router.push('/')
 
-      //  console.log('loginResponse', loginResponse)
+      console.log('auth login loginResponse', loginResponse)
       //  {
       //     "error": "Email does not exist.",
       //     "status": 401,
@@ -39,12 +39,12 @@ const Auth = () => {
       if (loginResponse?.error) {
         throw new Error(loginResponse.error)
       }
+      router.push('/profiles')
     } catch (error) {
       console.log('login error', error)
       alert(`form login error: ${error}`)
     }
-    //   }, [email, password, router])
-  }, [email, password])
+  }, [email, password, router])
 
   const register = useCallback(async () => {
     try {
@@ -62,14 +62,14 @@ const Auth = () => {
   }, [email, name, password, login])
 
   return (
-    <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-no-repeat">
-      <div className='h-full w-full bg-black/50'>
+    <div className="relative min-h-screen w-full bg-[url('/images/hero.jpg')] bg-cover bg-no-repeat">
+      <div className='min-h-screen w-full bg-black/50'>
         <nav className='flex justify-center px-12 py-5 md:justify-start'>
           {/* <img src='images/logo.png' alt='netflix' className='h-12' /> */}
           <Image src='/images/logo.png' alt='netflix' height={48} width={177} priority />
         </nav>
         <div className='flex justify-center'>
-          <div className='mt-2 rounded-md bg-black/70 p-6 sm:p-16 lg:w-2/5 lg:max-w-md'>
+          <div className='relative mb-16 mt-20 rounded-md bg-black/70 p-6 sm:p-16 lg:max-w-md'>
             <form
               onSubmit={(e) => {
                 e.preventDefault()

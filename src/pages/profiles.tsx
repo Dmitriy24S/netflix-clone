@@ -1,8 +1,10 @@
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { NextPageContext } from 'next'
+import { getServerSession } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { authOptions } from './api/auth/[...nextauth]'
 
 const Profiles = () => {
   const router = useRouter()
@@ -37,8 +39,12 @@ const Profiles = () => {
 
 export default Profiles
 
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context)
+// export async function getServerSideProps(context: NextPageContext) {
+// const session = await getSession(context) // ! null
+export async function getServerSideProps(context: any) {
+  const session = await getServerSession(context.req, context.res, authOptions)
+  // console.log('profiles session', session)
+  // console.log('profiles context', context) // {...}
 
   if (!session) {
     return {

@@ -52,6 +52,19 @@ export const authOptions: AuthOptions = {
           throw new Error('Incorrect password.')
         }
 
+        // console.log('nextauth user', user)
+        // nextauth user {
+        //   id: '644979fafb2fe884ab9e8c55',
+        //   name: 'Test User',
+        //   image: '',
+        //   email: 'test1@test.com',
+        //   emailVerified: 2023-04-26T19:22:34.616Z,
+        //   hashedPassword: '####',
+        //   createdAt: 2023-04-26T19:22:34.617Z,
+        //   updatedAt: 2023-04-26T19:22:34.617Z,
+        //   favoriteIds: []
+        // }
+
         return user
       },
     }),

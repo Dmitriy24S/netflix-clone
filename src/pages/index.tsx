@@ -8,7 +8,9 @@ import Navbar from '@/components/Navbar'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useFavorites from '@/hooks/useFavorites'
 import useInfoModal from '@/hooks/useInfoModal'
+import { getServerSession } from 'next-auth'
 import useMovieList from '../hooks/useMovieList'
+import { authOptions } from './api/auth/[...nextauth]'
 
 export default function Home() {
   const { data: user } = useCurrentUser()
@@ -20,7 +22,7 @@ export default function Home() {
     <>
       <InfoModal visible={isOpen} closeModal={closeModal} />
       <Navbar />
-      <main className='pt-20'>
+      <main>
         <Billboard />
         <div className='pb-40'>
           <MovieList title={'Trending Now'} data={movies} />
@@ -42,8 +44,10 @@ export default function Home() {
 }
 
 // protect home route when no session active // !
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context)
+// export async function getServerSideProps(context: NextPageContext) {
+// const session = await getSession(context)
+export async function getServerSideProps(context: any) {
+  const session = await getServerSession(context.req, context.res, authOptions)
 
   if (!session) {
     return {

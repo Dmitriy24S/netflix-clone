@@ -14,6 +14,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //   return res.status(401).end()
     // }
 
+    // console.log('current currentUser', currentUser)
+    // {
+    //   id: '644979fafb2fe884ab9e8c55',
+    //   name: 'Test User',
+    //   image: '',
+    //   email: 'test1@test.com',
+    //   emailVerified: 2023-04-26T19:22:34.616Z,
+    //   hashedPassword: '####',
+    //   createdAt: 2023-04-26T19:22:34.617Z,
+    //   updatedAt: 2023-04-26T19:22:34.617Z,
+    //   favoriteIds: []
+    // }
+
     return res.status(200).json(currentUser)
   } catch (error) {
     console.log('current handler error', error)
