@@ -1,6 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Netflix Clone
+
+![Design preview for Netflix Clone](./design-preview/design-preview.png)
+
+Netflix Clone. Created with NextJS, NextAuth, MongoDB, Prisma, Tailwind CSS, axios, swr, zustand, bcrypt, lodash, react-icons
+
+[Live Demo](https://netflix-clone-dmitriy24s.vercel.app/) 👈
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
