@@ -31,7 +31,7 @@ const TestAccountInfo = () => {
       </p>
       <p className='flex items-center'>
         <span className='mr-1 min-w-[8ch] text-neutral-400'>Password:</span>
-        test1
+        12345
         <button
           type='button'
           aria-label='Copy password'
