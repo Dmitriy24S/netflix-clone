@@ -37,7 +37,7 @@ const TestAccountInfo = () => {
           aria-label='Copy password'
           title='Copy password'
           onClick={() => {
-            copyToClipboard('test1')
+            copyToClipboard('12345')
             setIsPasswordCopied(true)
             setIsEmailCopied(false)
           }}
